@@ -42,4 +42,14 @@ public class ICustomerAdapter implements CustomerRepository {
         customerRepository.deleteById(id);
     }
 
+    @Override
+    public Customer findById(Long id) {
+        return CustomerEntityMapper.toModel(customerRepository.findById(id).orElse(null));
+    }
+
+    @Override
+    public Customer findByIdentifyCard(String identifyCard) {
+        return CustomerEntityMapper.toModel(customerRepository.findByIdentifyCard(identifyCard));
+    }
+
 }

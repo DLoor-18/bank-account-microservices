@@ -1,5 +1,8 @@
 package ec.com.sofka.entity;
 
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Person {
     private String name;
 

@@ -1,5 +1,6 @@
 package ec.com.sofka.usecase;
 
+import ec.com.sofka.exceptions.RecordNotFoundException;
 import ec.com.sofka.gateway.CustomerRepository;
 
 public class DeleteCustomerUseCase {
@@ -10,6 +11,9 @@ public class DeleteCustomerUseCase {
     }
 
     public void execute(Long customerId) {
-        customerRepository.delete(customerId);
+        if (customerRepository.findById(customerId) != null) {
+            customerRepository.delete(customerId);
+        }
+        throw new RecordNotFoundException("Customer with id " + customerId + " not found");
     }
 }

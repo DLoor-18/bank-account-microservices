@@ -15,7 +15,7 @@ public class CustomerMapper {
                     customer.getIdentifyCard(),
                     customer.getAddress(),
                     customer.getPhone(),
-                    null,
+                    customer.getCustomerId(),
                     customer.getPassword(),
                     customer.getStatus()
             );
@@ -28,7 +28,6 @@ public class CustomerMapper {
         if (customer != null) {
             return new CustomerResponseDTO(
                     customer.getCustomerId(),
-                    customer.getPassword(),
                     customer.getStatus(),
                     customer.getName(),
                     customer.getGender(),

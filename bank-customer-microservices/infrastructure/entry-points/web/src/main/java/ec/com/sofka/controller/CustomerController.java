@@ -1,11 +1,13 @@
 package ec.com.sofka.controller;
 
+import ec.com.sofka.data.CustomerDeleteRequestDTO;
 import ec.com.sofka.data.CustomerRequestDTO;
 import ec.com.sofka.data.CustomerResponseDTO;
 import ec.com.sofka.handler.customer.DeleteCustomerHandler;
 import ec.com.sofka.handler.customer.FindAllCustomerHandler;
 import ec.com.sofka.handler.customer.SaveCustomerHandler;
 import ec.com.sofka.handler.customer.UpdateCustomerHandler;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +30,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerResponseDTO> saveCustomer(@RequestBody CustomerRequestDTO customerRequestDTO) {
+    public ResponseEntity<CustomerResponseDTO> saveCustomer(@Valid @RequestBody CustomerRequestDTO customerRequestDTO) {
         CustomerResponseDTO customerResponse = saveCustomerHandler.save(customerRequestDTO);
         return new ResponseEntity<>(customerResponse, HttpStatus.CREATED);
     }
@@ -39,13 +41,13 @@ public class CustomerController {
     }
 
     @PutMapping
-    public ResponseEntity<CustomerResponseDTO> updateCustomer(@RequestBody CustomerRequestDTO customerRequestDTO) {
+    public ResponseEntity<CustomerResponseDTO> updateCustomer(@Valid @RequestBody CustomerRequestDTO customerRequestDTO) {
         return ResponseEntity.ok(updateCustomerHandler.updateCustomer(customerRequestDTO));
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteCustomer(@RequestBody Long customerId) {
-        deleteCustomerHandler.delete(customerId);
+    public ResponseEntity<Void> deleteCustomer(@Valid @RequestBody CustomerDeleteRequestDTO customer) {
+        deleteCustomerHandler.delete(customer.getCustomerId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

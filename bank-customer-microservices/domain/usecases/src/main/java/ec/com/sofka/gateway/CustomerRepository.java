@@ -9,4 +9,6 @@ public interface CustomerRepository {
     List<Customer> findAll();
     Customer update(Customer customer);
     void delete(Long id);
+    Customer findById(Long id);
+    Customer findByIdentifyCard(String identifyCard);
 }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class CustomerResponseDTO implements Serializable {
     private Long customerId;
-    private String password;
     private Boolean status;
     private String name;
     private String gender;
@@ -16,9 +15,8 @@ public class CustomerResponseDTO implements Serializable {
     public CustomerResponseDTO() {
     }
 
-    public CustomerResponseDTO(Long customerId, String password, Boolean status, String name, String gender, Integer age, String identifyCard, String address, String phone) {
+    public CustomerResponseDTO(Long customerId, Boolean status, String name, String gender, Integer age, String identifyCard, String address, String phone) {
         this.customerId = customerId;
-        this.password = password;
         this.status = status;
         this.name = name;
         this.gender = gender;
@@ -34,14 +32,6 @@ public class CustomerResponseDTO implements Serializable {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Boolean getStatus() {

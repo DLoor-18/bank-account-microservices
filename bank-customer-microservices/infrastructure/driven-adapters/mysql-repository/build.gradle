@@ -1,6 +1,8 @@
 dependencies {
     implementation project(":model")
     implementation project(":usecases")
+//    implementation project (':app-exception')
 
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.2.5'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.mysql:mysql-connector-j'
 }
