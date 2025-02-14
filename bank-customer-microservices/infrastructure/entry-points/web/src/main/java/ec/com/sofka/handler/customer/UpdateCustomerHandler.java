@@ -1,21 +1,21 @@
 package ec.com.sofka.handler.customer;
 
-import ec.com.sofka.data.CustomerRequestDTO;
 import ec.com.sofka.data.CustomerResponseDTO;
-import ec.com.sofka.gateway.CustomerRepository;
+import ec.com.sofka.data.CustomerUpdateRequestDTO;
 import ec.com.sofka.mapper.CustomerMapper;
+import ec.com.sofka.usecase.UpdateCustomerUseCase;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UpdateCustomerHandler {
-    private final CustomerRepository customerRepository;
+    private final UpdateCustomerUseCase updateCustomerUseCase;
 
-    public UpdateCustomerHandler(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public UpdateCustomerHandler(UpdateCustomerUseCase updateCustomerUseCase) {
+        this.updateCustomerUseCase = updateCustomerUseCase;
     }
 
-    public CustomerResponseDTO updateCustomer(CustomerRequestDTO customer) {
-        return CustomerMapper.toResponseDto(customerRepository.update(CustomerMapper.toModel(customer)));
+    public CustomerResponseDTO updateCustomer(CustomerUpdateRequestDTO customer) {
+        return CustomerMapper.toResponseDto(updateCustomerUseCase.execute(CustomerMapper.updateToModel(customer)));
     }
 
 }

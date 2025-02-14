@@ -3,7 +3,7 @@ package ec.com.sofka.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "customer", uniqueConstraints = @UniqueConstraint(columnNames = "customer_id"))
+@Table(name = "customers", uniqueConstraints = @UniqueConstraint(columnNames = "customer_id"))
 public class CustomerEntity extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

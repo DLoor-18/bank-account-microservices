@@ -3,6 +3,7 @@ package ec.com.sofka.controller;
 import ec.com.sofka.data.CustomerDeleteRequestDTO;
 import ec.com.sofka.data.CustomerRequestDTO;
 import ec.com.sofka.data.CustomerResponseDTO;
+import ec.com.sofka.data.CustomerUpdateRequestDTO;
 import ec.com.sofka.handler.customer.DeleteCustomerHandler;
 import ec.com.sofka.handler.customer.FindAllCustomerHandler;
 import ec.com.sofka.handler.customer.SaveCustomerHandler;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/api/customers")
 public class CustomerController {
     private final SaveCustomerHandler saveCustomerHandler;
     private final UpdateCustomerHandler updateCustomerHandler;
@@ -41,7 +42,7 @@ public class CustomerController {
     }
 
     @PutMapping
-    public ResponseEntity<CustomerResponseDTO> updateCustomer(@Valid @RequestBody CustomerRequestDTO customerRequestDTO) {
+    public ResponseEntity<CustomerResponseDTO> updateCustomer(@Valid @RequestBody CustomerUpdateRequestDTO customerRequestDTO) {
         return ResponseEntity.ok(updateCustomerHandler.updateCustomer(customerRequestDTO));
     }
 

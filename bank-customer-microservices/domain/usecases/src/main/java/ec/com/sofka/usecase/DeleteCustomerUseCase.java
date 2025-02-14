@@ -11,9 +11,9 @@ public class DeleteCustomerUseCase {
     }
 
     public void execute(Long customerId) {
-        if (customerRepository.findById(customerId) != null) {
-            customerRepository.delete(customerId);
+        if (customerRepository.findById(customerId) == null) {
+            throw new RecordNotFoundException("Customer with id " + customerId + " not found");
         }
-        throw new RecordNotFoundException("Customer with id " + customerId + " not found");
+        customerRepository.delete(customerId);
     }
 }

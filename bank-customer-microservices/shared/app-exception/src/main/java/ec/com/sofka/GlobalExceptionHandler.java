@@ -21,18 +21,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EmptyCollectionException.class)
     public ResponseEntity<ErrorDetails> handleEmptyCollectionException(EmptyCollectionException ex) {
         ErrorDetails errorDetails = new ErrorDetails(404, ex.getMessage(), new Date());
+        log.error(ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(TransactionRejectedException.class)
     public ResponseEntity<ErrorDetails> handleTransactionRejectedException(TransactionRejectedException ex) {
         ErrorDetails errorDetails = new ErrorDetails(400, ex.getMessage(), new Date());
+        log.error(ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(RecordNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleRecordNotFoundException(RecordNotFoundException ex) {
         ErrorDetails errorDetails = new ErrorDetails(404, ex.getMessage(), new Date());
+        log.error(ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
@@ -46,6 +49,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConflictException.class)
     public ResponseEntity<ErrorDetails> handleConflictException(ConflictException ex) {
         ErrorDetails errorDetails = new ErrorDetails(400, ex.getMessage(), new Date());
+        log.error(ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -63,6 +67,7 @@ public class GlobalExceptionHandler {
                 fieldErrors
         );
 
+        log.error(ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 

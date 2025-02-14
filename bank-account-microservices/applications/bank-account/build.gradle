@@ -1,0 +1,14 @@
+dependencies {
+
+    implementation project (':usecases')
+    implementation project (':mysql-repository')
+    implementation project(':web')
+    implementation project(':app-config')
+    implementation project(':app-utils')
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+}

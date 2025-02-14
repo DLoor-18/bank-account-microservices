@@ -1,17 +1,17 @@
 package ec.com.sofka.handler.customer;
 
-import ec.com.sofka.gateway.CustomerRepository;
+import ec.com.sofka.usecase.DeleteCustomerUseCase;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DeleteCustomerHandler {
-    private final CustomerRepository customerRepository;
+    private final DeleteCustomerUseCase deleteCustomerUseCase;
 
-    public DeleteCustomerHandler(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public DeleteCustomerHandler(DeleteCustomerUseCase deleteCustomerUseCase) {
+        this.deleteCustomerUseCase = deleteCustomerUseCase;
     }
 
-        public void delete(Long customerId) {
-        customerRepository.delete(customerId);
+    public void delete(Long customerId) {
+        deleteCustomerUseCase.execute(customerId);
     }
 }

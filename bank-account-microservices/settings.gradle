@@ -1,1 +1,25 @@
 rootProject.name = 'bank-account-microservices'
+
+include ':model'
+findProject(':model').projectDir = file('./domain/model')
+
+include ':usecases'
+findProject(':usecases').projectDir = file('./domain/usecases')
+
+include ':bank-account'
+findProject(':bank-account').projectDir = file('./applications/bank-account')
+
+include ':mysql-repository'
+findProject(':mysql-repository').projectDir = file ('./infrastructure/driven-adapters/mysql-repository')
+
+include ':web'
+findProject(':web').projectDir = file ('./infrastructure/entry-points/web')
+
+include ':app-config'
+findProject(':app-config').projectDir = file('./shared/app-config')
+
+include ':app-exception'
+findProject(':app-exception').projectDir = file('./shared/app-exception')
+
+include ':app-utils'
+findProject(':app-utils').projectDir = file('./shared/app-utils')
