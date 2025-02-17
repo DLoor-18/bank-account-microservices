@@ -21,5 +21,8 @@ findProject(':app-config').projectDir = file('./shared/app-config')
 include ':app-exception'
 findProject(':app-exception').projectDir = file('./shared/app-exception')
 
-include ':app-utils'
-findProject(':app-utils').projectDir = file('./shared/app-utils')
+include ':rabbit-info-bus'
+findProject(':rabbit-info-bus').projectDir = file('./infrastructure/driven-adapters/rabbit-info-bus')
+
+include ':rabbit-properties'
+findProject(':rabbit-properties').projectDir = file('./shared/rabbit-properties')

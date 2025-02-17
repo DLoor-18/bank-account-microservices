@@ -1,9 +1,7 @@
 package ec.com.sofka.mapper;
 
 import ec.com.sofka.Movement;
-import ec.com.sofka.data.MovementRequestDTO;
-import ec.com.sofka.data.MovementResponseDTO;
-import ec.com.sofka.data.MovementUpdateRequestDTO;
+import ec.com.sofka.data.*;
 
 import java.math.BigDecimal;
 
@@ -16,7 +14,8 @@ public class MovementMapper {
                     movement.getAccountNumber(),
                     movement.getMovementType(),
                     movement.getValue(),
-                    BigDecimal.ZERO
+                    BigDecimal.ZERO,
+                    null
             );
         }
 
@@ -30,7 +29,8 @@ public class MovementMapper {
                     movement.getAccountNumber(),
                     movement.getMovementType(),
                     movement.getValue(),
-                    movement.getBalance()
+                    movement.getBalance(),
+                    null
             );
         }
 
@@ -44,7 +44,25 @@ public class MovementMapper {
                     movement.getAccountNumber(),
                     movement.getMovementType(),
                     movement.getValue(),
-                    movement.getBalance()
+                    movement.getBalance(),
+                    movement.getDate()
+            );
+        }
+
+        return null;
+    }
+
+    public static FindMovementsResponseDTO toResponseFindDTO(MovementsData movement) {
+        if (movement != null) {
+            return new FindMovementsResponseDTO(
+                    movement.getDate(),
+                    movement.getCustomer(),
+                    movement.getAccountNumber(),
+                    movement.getMovementType(),
+                    movement.getOpeningBalance(),
+                    movement.getStatus(),
+                    movement.getMovementAmount(),
+                    movement.getAvailableBalance()
             );
         }
 

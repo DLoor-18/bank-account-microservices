@@ -2,6 +2,7 @@ dependencies {
 
     implementation project (':usecases')
     implementation project (':mysql-repository')
+    implementation project(':rabbit-listener-bus')
     implementation project(':web')
     implementation project(':app-config')
     implementation project(':app-utils')
@@ -9,6 +10,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
 }

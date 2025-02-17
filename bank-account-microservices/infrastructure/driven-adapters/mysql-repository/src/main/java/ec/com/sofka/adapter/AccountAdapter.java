@@ -53,4 +53,11 @@ public class AccountAdapter implements AccountRepository {
                 accountRepository.findByNumberAccount(numberAccount));
     }
 
+    @Override
+    public List<Account> findByCustomerId(Long customerId) {
+        return accountRepository.findByCustomerId(customerId).stream()
+                .map(AccountEntityMapper::toModel)
+                .collect(Collectors.toList());
+    }
+
 }

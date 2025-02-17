@@ -20,8 +20,8 @@ import java.util.Map;
 public class GlobalExceptionHandler {
     @ExceptionHandler(EmptyCollectionException.class)
     public ResponseEntity<ErrorDetails> handleEmptyCollectionException(EmptyCollectionException ex) {
-        ErrorDetails errorDetails = new ErrorDetails(404, ex.getMessage(), new Date());
-        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+        ErrorDetails errorDetails = new ErrorDetails(204, ex.getMessage(), new Date());
+        return new ResponseEntity<>(errorDetails, HttpStatus.NO_CONTENT);
     }
 
     @ExceptionHandler(TransactionRejectedException.class)

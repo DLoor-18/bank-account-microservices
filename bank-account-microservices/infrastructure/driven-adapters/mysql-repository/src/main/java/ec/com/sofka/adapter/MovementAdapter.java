@@ -6,6 +6,7 @@ import ec.com.sofka.mapper.MovementEntityMapper;
 import ec.com.sofka.repository.IMovementRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,4 +47,12 @@ public class MovementAdapter implements MovementRepository {
         return MovementEntityMapper.toModel(
                 movementRepository.findById(id).orElse(null));
     }
+
+    @Override
+    public List<Movement> findMovementsByDateRangeAndAccounts(LocalDateTime startDate, LocalDateTime endDate, List<String> accountNumber) {
+        return movementRepository.findMovementsByDateRangeAndAccounts(startDate, endDate, accountNumber).stream()
+                .map(MovementEntityMapper::toModel)
+                .collect(Collectors.toList());
+    }
+
 }

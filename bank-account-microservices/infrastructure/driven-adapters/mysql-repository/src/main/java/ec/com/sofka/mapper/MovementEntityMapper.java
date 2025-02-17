@@ -25,7 +25,8 @@ public class MovementEntityMapper {
                 movementEntity.getAccountNumber(),
                 movementEntity.getMovementType(),
                 movementEntity.getValue(),
-                movementEntity.getBalance()
+                movementEntity.getBalance(),
+                movementEntity.getDate()
             );
         }
 

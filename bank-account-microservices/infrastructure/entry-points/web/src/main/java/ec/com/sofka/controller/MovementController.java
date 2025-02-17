@@ -1,18 +1,14 @@
 package ec.com.sofka.controller;
 
-import ec.com.sofka.data.DeleteRequestDTO;
-import ec.com.sofka.data.MovementRequestDTO;
-import ec.com.sofka.data.MovementResponseDTO;
-import ec.com.sofka.data.MovementUpdateRequestDTO;
-import ec.com.sofka.handler.movement.DeleteMovementHandler;
-import ec.com.sofka.handler.movement.FindAllMovementsHandler;
-import ec.com.sofka.handler.movement.SaveMovementHandler;
-import ec.com.sofka.handler.movement.UpdateMovementHandler;
+import ec.com.sofka.data.*;
+import ec.com.sofka.handler.movement.*;
 import jakarta.validation.Valid;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -22,12 +18,14 @@ public class MovementController {
     private final SaveMovementHandler saveMovementHandler;
     private final FindAllMovementsHandler findAllMovementsHandler;
     private final UpdateMovementHandler updateMovementHandler;
+    private final FindMovementsByConsumerHandler findMovementsByConsumerHandler;
 
-    public MovementController(DeleteMovementHandler deleteMovementHandler, SaveMovementHandler saveMovementHandler, FindAllMovementsHandler findAllMovementsHandler, UpdateMovementHandler updateMovementHandler) {
+    public MovementController(DeleteMovementHandler deleteMovementHandler, SaveMovementHandler saveMovementHandler, FindAllMovementsHandler findAllMovementsHandler, UpdateMovementHandler updateMovementHandler, FindMovementsByConsumerHandler findMovementsByConsumerHandler) {
         this.deleteMovementHandler = deleteMovementHandler;
         this.saveMovementHandler = saveMovementHandler;
         this.findAllMovementsHandler = findAllMovementsHandler;
         this.updateMovementHandler = updateMovementHandler;
+        this.findMovementsByConsumerHandler = findMovementsByConsumerHandler;
     }
 
     @PostMapping
@@ -50,5 +48,14 @@ public class MovementController {
     public ResponseEntity<Void> deleteCustomer(@Valid @RequestBody DeleteRequestDTO MovementRequestDTO) {
         deleteMovementHandler.delete(MovementRequestDTO);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/report{identifyCard}{startDate}{endDate}")
+    public ResponseEntity<List<FindMovementsResponseDTO>> report(
+            @RequestParam("identifyCard") String identificationCustomer,
+            @RequestParam("startDate")  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate startDate,
+            @RequestParam("endDate")  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate endDate) {
+        return  ResponseEntity.ok(findMovementsByConsumerHandler.findMovementsByConsumer(identificationCustomer, startDate, endDate));
+
     }
 }

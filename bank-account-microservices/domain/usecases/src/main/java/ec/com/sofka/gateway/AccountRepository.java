@@ -11,4 +11,6 @@ public interface AccountRepository {
     void delete(Long account);
     Account findById(Long id);
     Account findByNumberAccount(String numberAccount);
+    List<Account> findByCustomerId(Long customerId);
+
 }

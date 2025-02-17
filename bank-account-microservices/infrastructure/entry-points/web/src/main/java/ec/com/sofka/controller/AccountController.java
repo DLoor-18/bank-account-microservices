@@ -5,7 +5,7 @@ import ec.com.sofka.data.AccountResponseDTO;
 import ec.com.sofka.data.AccountUpdateRequestDTO;
 import ec.com.sofka.data.DeleteRequestDTO;
 import ec.com.sofka.handler.account.DeleteAccountHandler;
-import ec.com.sofka.handler.account.FindAllAcountsHandler;
+import ec.com.sofka.handler.account.FindAllAccountsHandler;
 import ec.com.sofka.handler.account.SaveAccountHandler;
 import ec.com.sofka.handler.account.UpdateAccountHandler;
 import jakarta.validation.Valid;
@@ -19,13 +19,13 @@ import java.util.List;
 @RequestMapping("/api/accounts")
 public class AccountController {
     private final DeleteAccountHandler deleteAccountHandler;
-    private final FindAllAcountsHandler findAllAcountsHandler;
+    private final FindAllAccountsHandler findAllAccountsHandler;
     private final SaveAccountHandler saveAccountHandler;
     private final UpdateAccountHandler updateAccountHandler;
 
-    public AccountController(DeleteAccountHandler deleteAccountHandler, FindAllAcountsHandler findAllAcountsHandler, SaveAccountHandler saveAccountHandler, UpdateAccountHandler updateAccountHandler) {
+    public AccountController(DeleteAccountHandler deleteAccountHandler, FindAllAccountsHandler findAllAccountsHandler, SaveAccountHandler saveAccountHandler, UpdateAccountHandler updateAccountHandler) {
         this.deleteAccountHandler = deleteAccountHandler;
-        this.findAllAcountsHandler = findAllAcountsHandler;
+        this.findAllAccountsHandler = findAllAccountsHandler;
         this.saveAccountHandler = saveAccountHandler;
         this.updateAccountHandler = updateAccountHandler;
     }
@@ -38,7 +38,7 @@ public class AccountController {
 
     @GetMapping
     public ResponseEntity<List<AccountResponseDTO>> getAllAccounts() {
-        return ResponseEntity.ok(findAllAcountsHandler.findAllAcounts());
+        return ResponseEntity.ok(findAllAccountsHandler.findAllAccounts());
     }
 
     @PutMapping

@@ -3,6 +3,7 @@ package ec.com.sofka.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "movements", uniqueConstraints = @UniqueConstraint(columnNames = "movement_id"))
@@ -24,7 +25,17 @@ public class MovementEntity {
     @Column(name = "balance", nullable = false)
     private BigDecimal balance;
 
+    @Column(name = "date")
+    private LocalDateTime date;
+
     public MovementEntity() {
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.date == null) {
+            this.date = LocalDateTime.now();
+        }
     }
 
     public MovementEntity(Long movementId, String accountNumber, String movementType, BigDecimal value, BigDecimal balance) {
@@ -73,6 +84,10 @@ public class MovementEntity {
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
     }
 
 }
